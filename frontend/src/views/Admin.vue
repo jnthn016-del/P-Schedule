@@ -5,7 +5,7 @@
     <main class="flex-1 max-w-[1100px] w-full mx-auto px-6 py-7">
       <!-- Tab bar -->
       <div
-        class="flex gap-0.5 bg-white border border-gray-200 rounded-xl p-1 w-fit mb-6 shadow-sm"
+        class="flex gap-0.5 bg-white border border-gray-200 rounded-xl p-1 w-full sm:w-fit mb-6 shadow-sm overflow-x-auto whitespace-nowrap"
       >
         <button
           v-for="tab in tabs"
@@ -32,8 +32,8 @@
             >{{ jadwal.length }} jadwal ditemukan</span
           >
         </div>
-        <div class="card overflow-hidden">
-          <table class="w-full">
+        <div class="card overflow-x-auto">
+          <table class="w-full min-w-[700px]">
             <thead class="bg-navy">
               <tr>
                 <th class="th">Agenda</th>
@@ -96,8 +96,8 @@
             ＋ Tambah Ruangan
           </button>
         </div>
-        <div class="card overflow-hidden">
-          <table class="w-full">
+        <div class="card overflow-x-auto">
+          <table class="w-full min-w-[500px]">
             <thead class="bg-navy">
               <tr>
                 <th class="th">Nama Ruangan</th>
@@ -142,8 +142,8 @@
             ＋ Tambah Divisi
           </button>
         </div>
-        <div class="card overflow-hidden">
-          <table class="w-full">
+        <div class="card overflow-x-auto">
+          <table class="w-full min-w-[400px]">
             <thead class="bg-navy">
               <tr>
                 <th class="th">Nama Divisi</th>
@@ -197,8 +197,8 @@
             ＋ Tambah Pengguna
           </button>
         </div>
-        <div class="card overflow-hidden">
-          <table class="w-full">
+        <div class="card overflow-x-auto">
+          <table class="w-full min-w-[700px]">
             <thead class="bg-navy">
               <tr>
                 <th class="th">Nama</th>

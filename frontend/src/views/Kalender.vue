@@ -2,46 +2,52 @@
   <div class="min-h-screen flex flex-col">
     <Topbar />
 
-    <main class="flex-1 max-w-[1200px] w-full mx-auto px-6 py-7">
+    <main class="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 py-7">
       <!-- Toolbar -->
-      <div class="flex items-center justify-between mb-5">
-        <div class="flex items-center gap-3">
+      <!-- PERBAIKAN: flex-col agar di HP susunannya ke bawah, dan sm:flex-row untuk laptop -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5">
+        
+        <!-- Grup Navigasi Bulan -->
+        <!-- PERBAIKAN: overflow-x-auto agar tombol bulan aman jika layar sangat sempit -->
+        <div class="flex items-center gap-1.5 sm:gap-3 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
           <button
-            class="w-9 h-9 rounded-full border border-gray-200 bg-white shadow-sm flex items-center justify-center text-gray-500 hover:bg-accent hover:text-white hover:border-accent transition text-lg"
+            class="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full border border-gray-200 bg-white shadow-sm flex items-center justify-center text-gray-500 hover:bg-accent hover:text-white hover:border-accent transition text-lg"
             @click="prevMonth"
           >
             ‹
           </button>
           <h1
-            class="font-display font-semibold text-navy text-xl min-w-[180px] text-center"
+            class="font-display font-semibold text-navy text-base sm:text-xl min-w-[130px] sm:min-w-[180px] text-center shrink-0"
           >
             {{ monthLabel }}
           </h1>
           <button
-            class="w-9 h-9 rounded-full border border-gray-200 bg-white shadow-sm flex items-center justify-center text-gray-500 hover:bg-accent hover:text-white hover:border-accent transition text-lg"
+            class="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full border border-gray-200 bg-white shadow-sm flex items-center justify-center text-gray-500 hover:bg-accent hover:text-white hover:border-accent transition text-lg"
             @click="nextMonth"
           >
             ›
           </button>
           <button
-            class="text-xs text-accent font-medium px-3 py-1.5 rounded-lg border border-accent/30 hover:bg-accent-light transition ml-1"
+            class="text-[11px] sm:text-xs shrink-0 text-accent font-medium px-2.5 sm:px-3 py-1.5 rounded-lg border border-accent/30 hover:bg-accent-light transition ml-1"
             @click="goToday"
           >
             Hari Ini
           </button>
         </div>
 
-        <button class="btn-primary" @click="openAdd">
-          <span class="text-lg leading-none">＋</span> Tambah Jadwal
+        <!-- PERBAIKAN: w-full di HP agar tombol memanjang penuh, justify-center agar tulisan di tengah -->
+        <button class="btn-primary w-full sm:w-auto flex justify-center shrink-0" @click="openAdd">
+          <span class="text-lg leading-none mr-1">＋</span> Tambah Jadwal
         </button>
       </div>
 
       <!-- Legend -->
-      <div class="flex items-center gap-4 mb-4">
+      <!-- PERBAIKAN: overflow-x-auto agar daftar ruangan bisa digeser ke samping -->
+      <div class="flex items-center gap-4 mb-4 overflow-x-auto pb-2">
         <div
           v-for="r in rooms"
           :key="r.id"
-          class="flex items-center gap-1.5 text-xs text-gray-500"
+          class="flex items-center gap-1.5 text-xs text-gray-500 shrink-0"
         >
           <span
             class="w-2.5 h-2.5 rounded-sm shrink-0"
@@ -67,12 +73,14 @@
       </div>
 
       <!-- Calendar -->
-      <CalendarGrid
-        v-else
-        :cells="cells"
-        :rooms="rooms"
-        @dayClick="openDayPopover"
-      />
+      <!-- PERBAIKAN UTAMA: Bungkus kalender dengan div overflow dan paksa lebar minimum -->
+      <div v-else class="w-full pb-4">
+        <CalendarGrid
+          :cells="cells"
+          :rooms="rooms"
+          @dayClick="openDayPopover"
+        />
+      </div>
     </main>
 
     <!-- ── Day Schedule List ── -->
